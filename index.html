@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ordo CRIS — Fichas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Ordo CRIS — Fichas</h1>
+    <div class="header-actions">
+      <input id="search" placeholder="Buscar personagem..." />
+      <button id="newBtn">Nova Ficha</button>
+      <button id="exportAllBtn">Exportar todas (JSON)</button>
+      <input type="file" id="importFile" accept=".json" style="display:none" />
+      <button id="importBtn">Importar (JSON)</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="left-pane">
+      <div class="list" id="charList"></div>
+    </aside>
+
+    <section class="sheet" id="sheet">
+      <div class="top-row">
+        <div class="info">
+          <input id="name" placeholder="Nome do personagem" />
+          <div class="meta">
+            <input id="age" placeholder="Idade" />
+            <input id="class" placeholder="Classe / Origem" />
+            <input id="level" placeholder="Nível" />
+          </div>
+          <textarea id="bio" placeholder="Bio / histórico (curto)"></textarea>
+        </div>
+        <div class="bars">
+          <label>Vida <span id="vidaVal"></span></label>
+          <input id="vidaMax" type="number" min="0" />
+          <input id="vidaNow" type="number" min="0" />
+          <label>Sanidade <span id="sanVal"></span></label>
+          <input id="sanMax" type="number" min="0" />
+          <input id="sanNow" type="number" min="0" />
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="box attributes">
+          <h3>Atributos</h3>
+          <div class="attrs" id="attributes">
+            <!-- will be filled by JS -->
+          </div>
+        </div>
+
+        <div class="box skills">
+          <h3>Perícias</h3>
+          <div id="skills"></div>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="box combat">
+          <h3>Combate</h3>
+          <div class="combat-grid">
+            <input id="initiative" placeholder="Iniciativa" />
+            <input id="defense" placeholder="Defesa" />
+            <input id="meleeDmg" placeholder="Dano corpo a corpo" />
+            <input id="rangedDmg" placeholder="Dano à distância" />
+            <input id="conditions" placeholder="Condições" />
+          </div>
+        </div>
+
+        <div class="box inventory">
+          <h3>Inventário</h3>
+          <textarea id="inventory" placeholder='Ex: Lanterna x1; Pistola (1d8) mun 12; Curativo x2'></textarea>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="box abilities">
+          <h3>Habilidades / Técnicas</h3>
+          <textarea id="abilities" placeholder="Habilidades passivas/ativas"></textarea>
+        </div>
+        <div class="box rituals">
+          <h3>Rituais</h3>
+          <textarea id="rituals" placeholder="Rituais (nome | custo | efeito | risco)"></textarea>
+        </div>
+      </div>
+
+      <div class="sheet-actions">
+        <button id="saveBtn">Salvar Ficha</button>
+        <button id="duplicateBtn">Duplicar</button>
+        <button id="deleteBtn">Excluir</button>
+        <button id="exportBtn">Exportar ficha (JSON)</button>
+        <button id="copyBtn">Copiar JSON</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Feito para Ordo — CRIS style. Salva localmente no dispositivo + export/import por JSON.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
