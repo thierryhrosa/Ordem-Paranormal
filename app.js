@@ -263,3 +263,55 @@ document.querySelectorAll('input, textarea').forEach(el=>{
 loadStorage();
 renderList();
 if(chars.length) openChar(chars[0].id);
+// Preenche as listas de atributos e perícias na área de rolagem
+function atualizarRollSelects() {
+    const attrContainer = document.getElementById("attributes");
+    const skillContainer = document.getElementById("skills");
+
+    const selA = document.getElementById("rollAtributo");
+    const selP = document.getElementById("rollPericia");
+
+    selA.innerHTML = "";
+    selP.innerHTML = "";
+
+    // Atributos (inputs)
+    [...attrContainer.querySelectorAll("input")].forEach(inp => {
+        const nome = inp.getAttribute("data-name");
+        selA.innerHTML += `<option value="${inp.value}">${nome} (+${inp.value})</option>`;
+    });
+
+    // Perícias (inputs)
+    [...skillContainer.querySelectorAll("input")].forEach(inp => {
+        const nome = inp.getAttribute("data-name");
+        selP.innerHTML += `<option value="${inp.value}">${nome} (+${inp.value})</option>`;
+    });
+}
+
+// Chamar sempre que carregar ficha
+setTimeout(atualizarRollSelects, 300);
+
+
+// FUNÇÃO DE ROLAGEM
+function rolarTeste() {
+    const atr = parseInt(document.getElementById("rollAtributo").value);
+    const per = parseInt(document.getElementById("rollPericia").value);
+
+    const d20 = Math.floor(Math.random() * 20) + 1;
+    const total = d20 + atr + per;
+
+    let msg = `
+        <p>🎲 <b>D20:</b> ${d20}</p>
+        <p>📌 <b>Atributo:</b> +${atr}</p>
+        <p>📌 <b>Perícia:</b> +${per}</p>
+        <p>⭐ <b>Total:</b> ${total}</p>
+    `;
+
+    if (d20 === 20) msg += `<p style="color:lime"><b>🔥 SUCESSO EXTREMO!</b></p>`;
+    else if (d20 === 1) msg += `<p style="color:red"><b>💀 FALHA CRÍTICA!</b></p>`;
+    else if (total >= 20) msg += `<p style="color:lime">✨ Sucesso Extraordinário</p>`;
+    else if (total >= 15) msg += `<p style="color:cyan">✔ Sucesso</p>`;
+    else if (total >= 10) msg += `<p style="color:orange">⚠ Sucesso Parcial</p>`;
+    else msg += `<p style="color:red">❌ Falha</p>`;
+
+    document.getElementById("rollResultado").innerHTML = msg;
+}
