@@ -205,3 +205,35 @@ body::after {
     mix-blend-mode: screen;
     pointer-events: none;
 }
+.nex-box {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.nex-box label {
+  font-size: 0.8rem;
+  color: #00ffcc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+  text-shadow: 0 0 4px #00ffcc;
+}
+
+#nexInput {
+  background: #0c0c0c;
+  border: 1px solid #00ffcc88;
+  padding: 6px;
+  color: #00ffd5;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 0 6px #00ffcc55;
+  transition: 0.2s;
+}
+
+#nexInput:focus {
+  border-color: #00ffee;
+  box-shadow: 0 0 10px #00ffee;
+  outline: none;
+}
