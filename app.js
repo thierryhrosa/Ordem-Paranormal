@@ -263,3 +263,22 @@ document.querySelectorAll('input, textarea').forEach(el=>{
 loadStorage();
 renderList();
 if(chars.length) openChar(chars[0].id);
+// --- Controle do NEX (sempre múltiplos de 5) ---
+const nexInput = document.getElementById("nexInput");
+
+if (nexInput) {
+    nexInput.addEventListener("input", () => {
+        let v = parseInt(nexInput.value);
+
+        if (isNaN(v)) v = 0;
+
+        // Limitar entre 0 e 100
+        if (v < 0) v = 0;
+        if (v > 100) v = 100;
+
+        // Arredondar para múltiplos de 5
+        const arredondado = Math.round(v / 5) * 5;
+
+        nexInput.value = arredondado;
+    });
+}
